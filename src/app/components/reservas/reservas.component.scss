@@ -1,0 +1,288 @@
+rm {
+  text-align: center;
+  position: relative;
+  margin-top: 30px;
+}
+
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 0px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+
+/*inputs*/
+#msform input,select{
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  font-size: 13px;
+  background: white;
+}
+
+#msform input:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline-width: 0;
+  transition: All 0.5s ease-in;
+  -webkit-transition: All 0.5s ease-in;
+  -moz-transition: All 0.5s ease-in;
+  -o-transition: All 0.5s ease-in;
+}
+
+/*buttons*/
+#msform .action-button {
+  width: 100px;
+  background: #20161b;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  text-align: center;
+}
+
+
+#msform .action-button-previous {
+  width: 100px;
+  background: #20161b;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  text-align: center;
+  color: red;
+}
+
+.col{
+  flex: 1;
+  padding: 20px;
+  width: 600px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.campo-titulo {
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+
+select.form-control:before {
+  content: "Tipo de identificación";
+  pointer-events: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+.form-control select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.form-control select::-ms-expand {
+  display: none;
+}
+
+/*headings*/
+.fs-title {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/*progressbar*/
+
+
+#progressbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  /* Agregamos esta línea */
+  justify-content: center;
+  /* Agregamos esta línea */
+}
+
+#progressbar li {
+  color: rgb(4, 4, 4);
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 33.33%;
+  position: relative;
+  letter-spacing: 1px;
+  text-align: center;
+  /* Agregamos esta línea */
+  line-height: 40px;
+  /* Modificamos esta línea */
+  display: inline-block;
+  /* Modificamos esta línea */
+}
+
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 24px;
+  height: 24px;
+  line-height: 23px;
+  display: block;
+  font-size: 12px;
+  color: #333;
+  background: white;
+  border-radius: 25px;
+  margin: 0 auto 10px auto;
+  text-align: center;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  left: -50%;
+  top: 9px;
+  z-index: -1;
+  /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none;
+}
+
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: #08b439;
+  color: white;
+}
+
+
+
+#progressbar li.inactive:before {
+  background: #616261;
+  color: #000;
+
+}
+
+// fieldset {
+//   /* for chrome and safari*/
+//   -webkit-animation-duration: .25ms;
+//   -webkit-animation-name: slidein;
+
+//   /*for firefox*/
+//   -moz-animation-duration: 1s;
+//   -moz-animation-name: slidein;
+
+//   /* for opera*/
+//   -o-animation-duration: 1s;
+//   -o-animation-name: slidein;
+
+//   /* Standard syntax*/
+//   animation-duration: 1s;
+//   animation-name: slidein;
+// }
+
+@-webkit-keyframes slidein {
+  from {
+    margin-right: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-right: 0%;
+    width: 100%;
+  }
+}
+
+@-moz-keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@-o-keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}

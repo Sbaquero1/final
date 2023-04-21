@@ -1,0 +1,472 @@
+<div class="row">
+  <div class="col-md-12 col-md-offset-3">
+    <form [formGroup]="reservasDetalles" id="msform">
+      <!-- progressbar -->
+      <ul id="progressbar">
+        <li [ngClass]="step >= 1 ? 'active ' : 'inactive'">Datos Reserva</li>
+        <li [ngClass]="step >= 2 ? 'active' : 'inactive'">Datos Personales</li>
+        <li [ngClass]="step == 3 ? 'active' : 'inactive'">Datos Pago</li>
+      </ul>
+      <!-- fieldsets -->
+
+      <fieldset *ngIf="step == 1">
+        <h2 class="fs-title">Datos de la reserva</h2>
+        <div class="row">
+          <div class="col">
+            <label for="adultos" class="campo-titulo">Número de Adultos</label>
+            <input
+              type="number"
+              value="1"
+              formControlName="adultos"
+              [ngClass]="{
+                'is-invalid': reserva_step && reserva['adultos'].errors
+              }"
+              placeholder="1"
+            />
+            <div
+              *ngIf="
+              reserva_step && reservasDetalles.controls['adultos'].errors
+              "
+            >
+              <div *ngIf="reserva['adultos'].errors?.['required']">
+                El número de adultos es requerido
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <label for="ninos" class="campo-titulo">Número de Niños</label>
+            <input
+              type="number"
+              formControlName="ninos"
+              [ngClass]="{
+                'is-invalid': reserva_step && reserva['ninos'].errors
+              }"
+              placeholder="0"
+            />
+            <div
+              *ngIf="reserva_step && reservasDetalles.controls['ninos'].errors"
+            >
+              <div *ngIf="reserva['ninos'].errors?.['required']">
+                El número de niños es requerido
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <label for="dias" class="campo-titulo">Número de Dias</label>
+            <input
+              type="number"
+              formControlName="dias"
+              [ngClass]="{
+                'is-invalid': reserva_step && reserva['dias'].errors
+              }"
+              placeholder="1"
+            />
+            <div
+              *ngIf="reserva_step && reservasDetalles.controls['dias'].errors"
+            >
+              <div *ngIf="reserva['dias'].errors?.['required']">
+                El número de dias es requerido
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="inicio" class="campo-titulo">Fecha de Inicio</label>
+            <input
+              type="date"
+              formControlName="fechaInicio"
+              [ngClass]="{
+                'is-invalid': reserva_step && reserva['fechaInicio'].errors
+              }"
+              placeholder="aaaa-mm-dd"
+            />
+            <div
+              *ngIf="
+              reserva_step && reservasDetalles.controls['fechaInicio'].errors
+              "
+            >
+              <div *ngIf="reserva['fechaInicio'].errors?.['required']">
+                Fecha de inicio es requerida
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <label for="fin" class="campo-titulo">Fecha de Fin</label>
+            <input
+              type="date"
+              formControlName="fechaFin"
+              [ngClass]="{
+                'is-invalid': reserva_step && reserva['fechaFin'].errors
+              }"
+              placeholder="1"
+            />
+            <div
+              *ngIf="
+              reserva_step && reservasDetalles.controls['fechaFin'].errors
+              "
+            >
+              <div *ngIf="reserva['fechaFin'].errors?.['required']">
+                El número de adultos es requerido
+              </div>
+            </div>
+          </div>
+        </div>
+        <input
+          (click)="siguiente()"
+          type="button"
+          name="siguiente"
+          class="next action-button"
+          value="Siguiente"
+        />
+      </fieldset>
+    </form>
+
+    <!-- step2 -->
+    <form [formGroup]="personasDetalles" id="msform">
+      <fieldset *ngIf="step == 2">
+        <h2 class="fs-title">Datos Personales</h2>
+        <div class="row">
+          <div class="col">
+            <label for="tipoIdentificacion" class="campo-titulo">Tipo de Identificación</label>
+            <select
+              class="select form-control"
+              formControlName="tipoIdentificacion"
+              [ngClass]="{
+                'is-invalid':
+                personas_step && persona['tipoIdentificacion'].errors
+              }"
+            >
+              <option disabled selected value="">Tipo de Identificación</option>
+              <option value="1">Cédula de Ciudadanía</option>
+              <option value="2">Cédula de Extranjería</option>
+              <option value="3">Pasaporte</option>
+            </select>
+            <div
+              *ngIf="
+              personas_step &&
+                personasDetalles.controls['tipoIdentificacion'].errors
+              "
+            >
+              <div *ngIf="persona['tipoIdentificacion'].errors?.['required']">
+                Tipo de identificación requerida
+              </div>
+            </div>
+          </div>
+          <!-- fin div col -->
+          <div class="col">
+            <label for="identificacion" class="campo-titulo">Número Identificación</label>
+            <input
+              type="number"
+              formControlName="identificacion"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': personas_step && persona['identificacion'].errors
+              }"
+              placeholder="Número de identificación"
+            />
+            <div
+              *ngIf="
+              personas_step && personasDetalles.controls['identificacion'].errors
+              "
+            >
+              <div *ngIf="persona['identificacion'].errors?.['required']">
+                Identificación requerida
+              </div>
+            </div>
+          </div>
+          <!-- fin div col -->
+          <div class="col">
+            <label for="genero" class="campo-titulo">Genero</label>
+            <select
+              class="select form-control"
+              formControlName="genero"
+              [ngClass]="{
+                'is-invalid': personas_step && persona['genero'].errors
+              }"
+            >
+              <option select disable value="">Seleccione su Genero</option>
+              <option value="1">Masculino</option>
+              <option value="2">Femenino</option>
+              <option value="3">Otro</option>
+            </select>
+            <div
+              *ngIf="personas_step && personasDetalles.controls['genero'].errors"
+            >
+              <div *ngIf="persona['genero'].errors?.['required']">
+                El genero requerido
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fin div row -->
+
+        <div class="row">
+          <div class="col">
+            <label for="nombres" class="campo-titulo">Nombres</label>
+            <input
+              type="text"
+              formControlName="nombres"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': personas_step && persona['nombres'].errors
+              }"
+              placeholder="Ingrese sus nombres"
+            />
+            <div
+              *ngIf="personas_step && personasDetalles.controls['nombres'].errors"
+            >
+              <div *ngIf="persona['nombres'].errors?.['required']">
+                Nombres requeridos
+              </div>
+            </div>
+          </div>
+          <!-- fin div col -->
+          <div class="col">
+            <label for="apellidos" class="campo-titulo">Apellidos</label>
+            <input
+              type="text"
+              formControlName="apellidos"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': personas_step && persona['apellidos'].errors
+              }"
+              placeholder="Ingrese sus apellidos"
+            />
+            <div
+              *ngIf="
+              personas_step && personasDetalles.controls['apellidos'].errors
+              "
+            >
+              <div *ngIf="persona['apellidos'].errors?.['required']">
+                Apellidos requeridos
+              </div>
+            </div>
+          </div>
+          <!-- fin div col -->
+          <div class="col">
+            <label for="correo" class="campo-titulo">Correo Electronico</label>
+            <input
+              type="email"
+              formControlName="correo"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': personas_step && persona['correo'].errors
+              }"
+              placeholder="Ingrese su correo"
+            />
+            <div
+              *ngIf="personas_step && personasDetalles.controls['correo'].errors"
+            >
+              <div *ngIf="persona['correo'].errors?.['required']">
+                Email requerido
+              </div>
+            </div>
+          </div>
+          <!-- fin div col -->
+          <div class="col">
+            <label for="tel" class="campo-titulo">Telefono</label>
+            <input
+              type="number"
+              formControlName="telefono"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': personas_step && persona['telefono'].errors
+              }"
+              placeholder="Ingrese su número de teléfono"
+            />
+            <div
+              *ngIf="personas_step && personasDetalles.controls['telefono'].errors"
+            >
+              <div *ngIf="persona['telefono'].errors?.['required']">
+                Teléfono requerido
+              </div>
+            </div>
+          </div>
+          <!-- fin div col -->
+        </div>
+        <!-- fin div row -->
+
+        <input
+          (click)="anterior()"
+          type="button"
+          name="anterior"
+          class="previous action-button-previous"
+          value="Volver"
+        />
+        <input
+          (click)="siguiente()"
+          type="button"
+          name="siguiente"
+          class="next action-button"
+          value="Siguiente"
+        />
+      </fieldset>
+    </form>
+
+    <!-- step 3 -->
+    <form [formGroup]="pagoDetalles" id="msform">
+      <fieldset *ngIf="step == 3">
+        <h2 class="fs-title">Datos de Pago</h2>
+        <div class="row">
+            <div class="col">
+              <select
+                class="select form-control"
+                formControlName="tipoTarjeta"
+                [ngClass]="{
+                  'is-invalid': pago_step && pago['tipoTarjeta'].errors
+                }"
+              >
+                <option value="">Seleccion su tipo de tarjeta</option>
+                <option value="1">Visa</option>
+                <option value="2">Mastercard</option>
+                <option value="3">American Express</option>
+              </select>
+              <div
+                *ngIf="
+                pago_step &&
+                  pagoDetalles.controls['tipoTarjeta'].errors
+                "
+              >
+                <div *ngIf="pago['tipoTarjeta'].errors?.['required']">
+                  El tipo de tarjeta es requerido
+                </div>
+              </div>
+              <input
+                type="text"
+                formControlName="nombreTarjeta"
+                placeholder="Ingrese el nombre de la tarjeta"
+                [ngClass]="{
+                  'is-invalid': pago_step && pago['nombreTarjeta'].errors
+                }"
+              />
+              <div
+                *ngIf="
+                pago_step &&
+                  pagoDetalles.controls['nombreTarjeta'].errors
+                "
+              >
+                <div *ngIf="pago['nombreTarjeta'].errors?.['required']">
+                  El nombre de la tarjeta es requerido
+                </div>
+              </div>
+            </div> <!-- fin div col -->
+            <div class="col">
+              <input
+                type="number"
+                formControlName="numeroTarjeta"
+                placeholder="Ingrese el número de la tarjeta"
+                [ngClass]="{
+                  'is-invalid': pago_step && pago['numeroTarjeta'].errors
+                }"
+              />
+              <div
+                *ngIf="
+                pago_step &&
+                  pagoDetalles.controls['numeroTarjeta'].errors
+                "
+              >
+                <div *ngIf="pago['numeroTarjeta'].errors?.['required']">
+                  El número de la tarjeta es requerido
+                </div>
+              </div>
+            </div> <!-- fin div col -->
+        </div>
+        <!-- fin div row -->
+        <div class="row">
+          <div class="col">
+            <input
+              type="number"
+              formControlName="cvv"
+              placeholder="Ingrese el cvv"
+              [ngClass]="{
+                'is-invalid': pago_step && pago['cvv'].errors
+              }"
+            />
+            <div
+              *ngIf="pago_step && pagoDetalles.controls['cvv'].errors"
+            >
+              <div *ngIf="pago['cvv'].errors?.['required']">
+                El código de seguridad es requerido
+              </div>
+            </div>
+          </div> <!-- fin div col -->
+          <div class="col">
+            <select
+            class="select form-control"
+            formControlName="mes"
+            [ngClass]="{
+              'is-invalid': pago_step && pago['mes'].errors
+            }"
+          >
+            <option select disable value="">Seleccion el mes</option>
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
+            <option value="9">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <div
+            *ngIf="pago_step && pagoDetalles.controls['mes'].errors"
+          >
+            <div *ngIf="pago['mes'].errors?.['required']">
+              El mes es requerido
+            </div>
+          </div>
+          </div> <!-- fin div col -->
+          <div class="col">
+            <select
+            class="select form-control"
+            formControlName="anio"
+            [ngClass]="{
+              'is-invalid': pago_step && pago['anio'].errors
+            }"
+          >
+            <option select disable value="">Seleccion el año</option>
+            <option value="1">23</option>
+            <option value="2">24</option>
+            <option value="3">25</option>
+            <option value="4">26</option>
+            <option value="5">27</option>
+            <option value="6">28</option>
+            <option value="7">29</option>
+            <option value="8">30</option>
+          </select>
+          <div
+            *ngIf="pago_step && pagoDetalles.controls['anio'].errors"
+          >
+            <div *ngIf="pago['anio'].errors?.['required']">
+              El año es requerido
+            </div>
+          </div>
+          </div> <!-- fin div col -->
+        </div>
+
+        <input
+          (click)="anterior()"
+          type="button"
+          name="anterior"
+          class="previous action-button-previous"
+          value="Volver"
+        />
+        <input
+          (click)="pagar()"
+          type="submit"
+          name="submit"
+          class="submit action-button"
+          value="Pagar"
+        />
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+
+
