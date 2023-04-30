@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 
 import { DatePipe } from '@angular/common';
@@ -15,9 +15,9 @@ import { ReservaService } from '../../../services/reserva.service';
 export class CrearReservaComponent implements OnInit {
 
 
-  public reservasDetalles!: FormGroup;
-  public personasDetalles!: FormGroup;
-  public pagoDetalles!: FormGroup;
+  public reservasDetalles!: UntypedFormGroup;
+  public personasDetalles!: UntypedFormGroup;
+  public pagoDetalles!: UntypedFormGroup;
   public reserva_step = false;
   public personas_step = false;
   public pago_step = false;
@@ -33,7 +33,7 @@ export class CrearReservaComponent implements OnInit {
   constructor(
     private reservaService: ReservaService,
     private datePipe: DatePipe,
-    private fb: FormBuilder) { }
+    private fb: UntypedFormBuilder) { }
 
   ngOnInit() {
 
