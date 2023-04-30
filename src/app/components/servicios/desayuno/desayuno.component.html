@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-4">
+    <h2 class="text-center">Desayunos</h2>
+    <div class="card-deck">
+      <div class="card" *ngFor="let desayuno of desayunos">
+        <img
+          class="card-img-top"
+          src="./../../../assets/img-1.png"
+          alt="Imagen de {{ desayuno.nombre }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ desayuno.nombre }}</h5>
+          <p class="card-text">{{ desayuno.descripcion }}</p>
+          <p class="card-text">
+            <small class="text-muted">{{ desayuno.precio | currency }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h2 class="text-center">Desayunos</h2>
+    <div class="card-deck">
+      <div class="card" *ngFor="let desayuno of desayunos">
+        <img
+          class="card-img-top"
+          src="./../../../assets/img-1.png"
+          alt="Imagen de {{ desayuno.nombre }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ desayuno.nombre }}</h5>
+          <p class="card-text">{{ desayuno.descripcion }}</p>
+          <p class="card-text">
+            <small class="text-muted">{{ desayuno.precio | currency }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

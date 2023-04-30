@@ -16,16 +16,16 @@
             <label for="adultos" class="campo-titulo">Número de Adultos</label>
             <input
               type="number"
-              value="1"
+              [ngModel]="adultos"
               formControlName="adultos"
               [ngClass]="{
                 'is-invalid': reserva_step && reserva['adultos'].errors
               }"
-              placeholder="1"
+              placeholder="Ingrese el número de adultos"
             />
             <div
               *ngIf="
-              reserva_step && reservasDetalles.controls['adultos'].errors
+                reserva_step && reservasDetalles.controls['adultos'].errors
               "
             >
               <div *ngIf="reserva['adultos'].errors?.['required']">
@@ -37,11 +37,12 @@
             <label for="ninos" class="campo-titulo">Número de Niños</label>
             <input
               type="number"
+              [ngModel]="ninos"
               formControlName="ninos"
               [ngClass]="{
                 'is-invalid': reserva_step && reserva['ninos'].errors
               }"
-              placeholder="0"
+              placeholder="Ingrese el número de niños"
             />
             <div
               *ngIf="reserva_step && reservasDetalles.controls['ninos'].errors"
@@ -55,11 +56,13 @@
             <label for="dias" class="campo-titulo">Número de Dias</label>
             <input
               type="number"
+              [ngModel]="dias"
+              (ngModelChange)="calcularFechaFin()"
               formControlName="dias"
               [ngClass]="{
                 'is-invalid': reserva_step && reserva['dias'].errors
               }"
-              placeholder="1"
+              placeholder="Ingerse el número de dias"
             />
             <div
               *ngIf="reserva_step && reservasDetalles.controls['dias'].errors"
@@ -75,6 +78,8 @@
             <label for="inicio" class="campo-titulo">Fecha de Inicio</label>
             <input
               type="date"
+              [(ngModel)]="fechaInicio"
+              (ngModelChange)="calcularFechaFin()"
               formControlName="fechaInicio"
               [ngClass]="{
                 'is-invalid': reserva_step && reserva['fechaInicio'].errors
@@ -83,7 +88,7 @@
             />
             <div
               *ngIf="
-              reserva_step && reservasDetalles.controls['fechaInicio'].errors
+                reserva_step && reservasDetalles.controls['fechaInicio'].errors
               "
             >
               <div *ngIf="reserva['fechaInicio'].errors?.['required']">
@@ -95,6 +100,7 @@
             <label for="fin" class="campo-titulo">Fecha de Fin</label>
             <input
               type="date"
+              [(ngModel)]="fechaFin"
               formControlName="fechaFin"
               [ngClass]="{
                 'is-invalid': reserva_step && reserva['fechaFin'].errors
@@ -103,7 +109,7 @@
             />
             <div
               *ngIf="
-              reserva_step && reservasDetalles.controls['fechaFin'].errors
+                reserva_step && reservasDetalles.controls['fechaFin'].errors
               "
             >
               <div *ngIf="reserva['fechaFin'].errors?.['required']">
@@ -128,13 +134,15 @@
         <h2 class="fs-title">Datos Personales</h2>
         <div class="row">
           <div class="col">
-            <label for="tipoIdentificacion" class="campo-titulo">Tipo de Identificación</label>
+            <label for="tipoIdentificacion" class="campo-titulo"
+              >Tipo de Identificación</label
+            >
             <select
               class="select form-control"
               formControlName="tipoIdentificacion"
               [ngClass]="{
                 'is-invalid':
-                personas_step && persona['tipoIdentificacion'].errors
+                  personas_step && persona['tipoIdentificacion'].errors
               }"
             >
               <option disabled selected value="">Tipo de Identificación</option>
@@ -144,7 +152,7 @@
             </select>
             <div
               *ngIf="
-              personas_step &&
+                personas_step &&
                 personasDetalles.controls['tipoIdentificacion'].errors
               "
             >
@@ -155,7 +163,9 @@
           </div>
           <!-- fin div col -->
           <div class="col">
-            <label for="identificacion" class="campo-titulo">Número Identificación</label>
+            <label for="identificacion" class="campo-titulo"
+              >Número Identificación</label
+            >
             <input
               type="number"
               formControlName="identificacion"
@@ -167,7 +177,8 @@
             />
             <div
               *ngIf="
-              personas_step && personasDetalles.controls['identificacion'].errors
+                personas_step &&
+                personasDetalles.controls['identificacion'].errors
               "
             >
               <div *ngIf="persona['identificacion'].errors?.['required']">
@@ -191,7 +202,9 @@
               <option value="3">Otro</option>
             </select>
             <div
-              *ngIf="personas_step && personasDetalles.controls['genero'].errors"
+              *ngIf="
+                personas_step && personasDetalles.controls['genero'].errors
+              "
             >
               <div *ngIf="persona['genero'].errors?.['required']">
                 El genero requerido
@@ -214,7 +227,9 @@
               placeholder="Ingrese sus nombres"
             />
             <div
-              *ngIf="personas_step && personasDetalles.controls['nombres'].errors"
+              *ngIf="
+                personas_step && personasDetalles.controls['nombres'].errors
+              "
             >
               <div *ngIf="persona['nombres'].errors?.['required']">
                 Nombres requeridos
@@ -235,7 +250,7 @@
             />
             <div
               *ngIf="
-              personas_step && personasDetalles.controls['apellidos'].errors
+                personas_step && personasDetalles.controls['apellidos'].errors
               "
             >
               <div *ngIf="persona['apellidos'].errors?.['required']">
@@ -256,7 +271,9 @@
               placeholder="Ingrese su correo"
             />
             <div
-              *ngIf="personas_step && personasDetalles.controls['correo'].errors"
+              *ngIf="
+                personas_step && personasDetalles.controls['correo'].errors
+              "
             >
               <div *ngIf="persona['correo'].errors?.['required']">
                 Email requerido
@@ -276,7 +293,9 @@
               placeholder="Ingrese su número de teléfono"
             />
             <div
-              *ngIf="personas_step && personasDetalles.controls['telefono'].errors"
+              *ngIf="
+                personas_step && personasDetalles.controls['telefono'].errors
+              "
             >
               <div *ngIf="persona['telefono'].errors?.['required']">
                 Teléfono requerido
@@ -309,72 +328,77 @@
       <fieldset *ngIf="step == 3">
         <h2 class="fs-title">Datos de Pago</h2>
         <div class="row">
-            <div class="col">
-              <select
-                class="select form-control"
-                formControlName="tipoTarjeta"
-                [ngClass]="{
-                  'is-invalid': pago_step && pago['tipoTarjeta'].errors
-                }"
-              >
-                <option value="">Seleccion su tipo de tarjeta</option>
-                <option value="1">Visa</option>
-                <option value="2">Mastercard</option>
-                <option value="3">American Express</option>
-              </select>
-              <div
-                *ngIf="
-                pago_step &&
-                  pagoDetalles.controls['tipoTarjeta'].errors
-                "
-              >
-                <div *ngIf="pago['tipoTarjeta'].errors?.['required']">
-                  El tipo de tarjeta es requerido
-                </div>
+          <div class="col">
+            <label for="tipoTarjeta" class="campo-titulo"
+              >Tipo de Tarjeta</label
+            >
+            <select
+              class="select form-control"
+              formControlName="tipoTarjeta"
+              [ngClass]="{
+                'is-invalid': pago_step && pago['tipoTarjeta'].errors
+              }"
+            >
+              <option value="">Seleccion su tipo de tarjeta</option>
+              <option value="1">Visa</option>
+              <option value="2">Mastercard</option>
+              <option value="3">American Express</option>
+            </select>
+            <div
+              *ngIf="pago_step && pagoDetalles.controls['tipoTarjeta'].errors"
+            >
+              <div *ngIf="pago['tipoTarjeta'].errors?.['required']">
+                El tipo de tarjeta es requerido
               </div>
-              <input
-                type="text"
-                formControlName="nombreTarjeta"
-                placeholder="Ingrese el nombre de la tarjeta"
-                [ngClass]="{
-                  'is-invalid': pago_step && pago['nombreTarjeta'].errors
-                }"
-              />
-              <div
-                *ngIf="
-                pago_step &&
-                  pagoDetalles.controls['nombreTarjeta'].errors
-                "
-              >
-                <div *ngIf="pago['nombreTarjeta'].errors?.['required']">
-                  El nombre de la tarjeta es requerido
-                </div>
+            </div>
+            <label for="nombreTarjeta" class="campo-titulo"
+              >Nombre de la Tarjeta</label
+            >
+            <input
+              type="text"
+              formControlName="nombreTarjeta"
+              placeholder="Ingrese el nombre de la tarjeta"
+              [ngClass]="{
+                'is-invalid': pago_step && pago['nombreTarjeta'].errors
+              }"
+            />
+            <div
+              *ngIf="pago_step && pagoDetalles.controls['nombreTarjeta'].errors"
+            >
+              <div *ngIf="pago['nombreTarjeta'].errors?.['required']">
+                El nombre de la tarjeta es requerido
               </div>
-            </div> <!-- fin div col -->
-            <div class="col">
-              <input
-                type="number"
-                formControlName="numeroTarjeta"
-                placeholder="Ingrese el número de la tarjeta"
-                [ngClass]="{
-                  'is-invalid': pago_step && pago['numeroTarjeta'].errors
-                }"
-              />
-              <div
-                *ngIf="
-                pago_step &&
-                  pagoDetalles.controls['numeroTarjeta'].errors
-                "
-              >
-                <div *ngIf="pago['numeroTarjeta'].errors?.['required']">
-                  El número de la tarjeta es requerido
-                </div>
+            </div>
+          </div>
+          <!-- fin div col -->
+          <div class="col">
+            <label for="numeroTarjeta" class="campo-titulo"
+              >Numero de la Tarjeta</label
+            >
+            <input
+              type="number"
+              formControlName="numeroTarjeta"
+              placeholder="Ingrese el número de la tarjeta"
+              [ngClass]="{
+                'is-invalid': pago_step && pago['numeroTarjeta'].errors
+              }"
+            />
+            <div
+              *ngIf="pago_step && pagoDetalles.controls['numeroTarjeta'].errors"
+            >
+              <div *ngIf="pago['numeroTarjeta'].errors?.['required']">
+                El número de la tarjeta es requerido
               </div>
-            </div> <!-- fin div col -->
+            </div>
+          </div>
+          <!-- fin div col -->
         </div>
         <!-- fin div row -->
         <div class="row">
           <div class="col">
+            <label for="cvvTarjeta" class="campo-titulo"
+              >Codigo CVV de la Tarjeta</label
+            >
             <input
               type="number"
               formControlName="cvv"
@@ -383,70 +407,73 @@
                 'is-invalid': pago_step && pago['cvv'].errors
               }"
             />
-            <div
-              *ngIf="pago_step && pagoDetalles.controls['cvv'].errors"
-            >
+            <div *ngIf="pago_step && pagoDetalles.controls['cvv'].errors">
               <div *ngIf="pago['cvv'].errors?.['required']">
                 El código de seguridad es requerido
               </div>
             </div>
-          </div> <!-- fin div col -->
+          </div>
+          <!-- fin div col -->
           <div class="col">
+            <label for="mesTarjeta" class="campo-titulo"
+              >Mes de Vencimiento</label
+            >
             <select
-            class="select form-control"
-            formControlName="mes"
-            [ngClass]="{
-              'is-invalid': pago_step && pago['mes'].errors
-            }"
-          >
-            <option select disable value="">Seleccion el mes</option>
-            <option value="1">01</option>
-            <option value="2">02</option>
-            <option value="3">03</option>
-            <option value="4">04</option>
-            <option value="5">05</option>
-            <option value="6">06</option>
-            <option value="7">07</option>
-            <option value="8">08</option>
-            <option value="9">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <div
-            *ngIf="pago_step && pagoDetalles.controls['mes'].errors"
-          >
-            <div *ngIf="pago['mes'].errors?.['required']">
-              El mes es requerido
+              class="select form-control"
+              formControlName="mes"
+              [ngClass]="{
+                'is-invalid': pago_step && pago['mes'].errors
+              }"
+            >
+              <option select disable value="">Seleccion el mes</option>
+              <option value="1">01</option>
+              <option value="2">02</option>
+              <option value="3">03</option>
+              <option value="4">04</option>
+              <option value="5">05</option>
+              <option value="6">06</option>
+              <option value="7">07</option>
+              <option value="8">08</option>
+              <option value="9">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <div *ngIf="pago_step && pagoDetalles.controls['mes'].errors">
+              <div *ngIf="pago['mes'].errors?.['required']">
+                El mes es requerido
+              </div>
             </div>
           </div>
-          </div> <!-- fin div col -->
+          <!-- fin div col -->
           <div class="col">
+            <label for="anioTarjeta" class="campo-titulo"
+              >Año de venciomiento</label
+            >
             <select
-            class="select form-control"
-            formControlName="anio"
-            [ngClass]="{
-              'is-invalid': pago_step && pago['anio'].errors
-            }"
-          >
-            <option select disable value="">Seleccion el año</option>
-            <option value="1">23</option>
-            <option value="2">24</option>
-            <option value="3">25</option>
-            <option value="4">26</option>
-            <option value="5">27</option>
-            <option value="6">28</option>
-            <option value="7">29</option>
-            <option value="8">30</option>
-          </select>
-          <div
-            *ngIf="pago_step && pagoDetalles.controls['anio'].errors"
-          >
-            <div *ngIf="pago['anio'].errors?.['required']">
-              El año es requerido
+              class="select form-control"
+              formControlName="anio"
+              [ngClass]="{
+                'is-invalid': pago_step && pago['anio'].errors
+              }"
+            >
+              <option select disable value="">Seleccion el año</option>
+              <option value="1">23</option>
+              <option value="2">24</option>
+              <option value="3">25</option>
+              <option value="4">26</option>
+              <option value="5">27</option>
+              <option value="6">28</option>
+              <option value="7">29</option>
+              <option value="8">30</option>
+            </select>
+            <div *ngIf="pago_step && pagoDetalles.controls['anio'].errors">
+              <div *ngIf="pago['anio'].errors?.['required']">
+                El año es requerido
+              </div>
             </div>
           </div>
-          </div> <!-- fin div col -->
+          <!-- fin div col -->
         </div>
 
         <input
@@ -457,7 +484,7 @@
           value="Volver"
         />
         <input
-          (click)="pagar()"
+          (click)="crearReserva()"
           type="submit"
           name="submit"
           class="submit action-button"
@@ -467,6 +494,3 @@
     </form>
   </div>
 </div>
-
-
-

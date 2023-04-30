@@ -1,33 +1,47 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule, DatePipe } from '@angular/common';
 
 //modulos
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReservasComponent } from './components/reservas/reservas.component';
-
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
+//importaciones enverioments
+import { environment } from 'src/environments/environment';
+
+//importaciones  clases firebase
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
+//importaciones de componentes
+import { CrearReservaComponent } from './components/reservas/crear-reserva/crear-reserva.component';
+import { ConsultarReservaComponent } from './components/reservas/consultar-reserva/consultar-reserva.component';
+import { DesayunoComponent } from './components/servicios/desayuno/desayuno.component';
+import { HomeComponent } from './components/home/home/home.component';
+import { NavComponent } from './components/nav/nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReservasComponent
+    CrearReservaComponent,
+    ConsultarReservaComponent,
+    DesayunoComponent,
+    HomeComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    CommonModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

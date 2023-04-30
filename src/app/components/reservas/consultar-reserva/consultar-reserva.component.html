@@ -1,0 +1,13 @@
+<!-- mostrar los usuarios y publicaciones -->
+<div *ngFor="let usuarioConPublicaciones of usuariosConPublicaciones$ | async">
+    <p>Nombre de usuario: {{usuarioConPublicaciones.nombre}}</p>
+    <p>Títulos de publicaciones:</p>
+    <ul>
+      <li *ngFor="let tituloPublicacion of usuarioConPublicaciones.titulosPublicaciones">
+        {{tituloPublicacion}}
+      </li>
+    </ul>
+  </div>
+
+
+ 
