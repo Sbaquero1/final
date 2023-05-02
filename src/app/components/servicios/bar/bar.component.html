@@ -1,7 +1,7 @@
 <div class="contenedor">
   <app-nav></app-nav>
   <div class="row">
-    <h1 class="text-center mt-2 title">Menú de Almuerzos</h1>
+    <h1 class="text-center mt-2 title">Bar</h1>
     <div class="col-md-3" *ngFor="let producto of productos">
       <div class="card card-custom">
         <img src="{{producto.imagen}}" class="card-img-top" alt="{{producto.nombre}}" />
@@ -42,7 +42,7 @@
 
 
           <div class="btn-center">
-            <button type="button" class="btn btn-primary" (click)="agregarAlCarrito(producto)">Agregar a la orden</button>
+            <button type="button" class="btn btn-primary" (click)="agregarAlCarrito(producto)">Agregar a la orden </button>
           </div>
         </div>
       </div>

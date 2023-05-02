@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home/home.component';
 import { NavComponent } from './components/nav/nav/nav.component';
 import { OrdenComponent } from './components/servicios/desayuno/orden/orden.component';
 import { AlmuerzoComponent } from './components/servicios/almuerzo/almuerzo.component';
+import { BarComponent } from './components/servicios/bar/bar.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'nav', component: NavComponent },
   { path: 'orden', component: OrdenComponent },
   { path: 'almuerzo', component: AlmuerzoComponent },
+  { path: 'bar', component: BarComponent },
 
 ];
 

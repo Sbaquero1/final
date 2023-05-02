@@ -25,6 +25,7 @@ import { NavComponent } from './components/nav/nav/nav.component';
 import { OrdenComponent } from './components/servicios/desayuno/orden/orden.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlmuerzoComponent } from './components/servicios/almuerzo/almuerzo.component';
+import { BarComponent } from './components/servicios/bar/bar.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AlmuerzoComponent } from './components/servicios/almuerzo/almuerzo.comp
     NavComponent,
     OrdenComponent,
     AlmuerzoComponent,
+    BarComponent,
   ],
   imports: [
     BrowserModule,
