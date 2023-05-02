@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class DesayunoComponent implements OnInit {
   increment(producto) {
     producto.cantidad++; // Incrementamos la cantidad del objeto de producto específico
   }
-  
+
   decrement(producto) {
     if (producto.cantidad > 0) {
       producto.cantidad--; // Decrementamos la cantidad del objeto de producto específico solo si es mayor que cero
@@ -22,7 +23,10 @@ export class DesayunoComponent implements OnInit {
   }
   productos = [];
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(
+    private firestore: AngularFirestore,
+    private snackBar: MatSnackBar,
+    ) {
     this.firestore.collection('productos').valueChanges().subscribe(data => {
       this.productos = data;
     });
@@ -37,13 +41,25 @@ export class DesayunoComponent implements OnInit {
         cantidad: producto.cantidad,
       });
       console.log('Producto agregado al carrito');
+      this.snackBar.open('Producto agregado al carrito', '', {
+        duration: 4000,
+        verticalPosition: 'top',
+        horizontalPosition: 'left',
+        panelClass: ['blue-snackbar']
+      });
       producto.cantidad = 0;
+
     }else{
       console.log('ingrese una cantidad mayor a 0');
+      this.snackBar.open('Debe seleccionar una cantidad mayor a 0', '', {
+        duration: 4000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: ['blue-snackbar']
+      });
     }
   }
 
   ngOnInit(): void {
   }
-
 }

@@ -7,9 +7,10 @@ import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compa
   templateUrl: './orden.component.html',
   styleUrls: ['./orden.component.scss']
 })
-export class OrdenComponent{
+export class OrdenComponent implements OnInit{
 
   productos = [];
+  total: number = 0;
 
   constructor(private firestore: AngularFirestore) {
     this.firestore.collection('carrito').valueChanges().subscribe(data => {
@@ -35,5 +36,14 @@ export class OrdenComponent{
     }
   }
 
+  calcularTotal(): void {
+    this.total = 0;
+    for (let producto of this.productos) {
+      this.total += producto.precio * producto.cantidad;
+    }
+  }
 
+  ngOnInit(): void {
+    this.calcularTotal();
+  }
 }

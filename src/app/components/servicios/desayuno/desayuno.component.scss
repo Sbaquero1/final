@@ -1,5 +1,5 @@
 .card {
-  width: 18rem;
+  width: 15rem;
   margin-bottom: 1.5rem;
   margin-top: 2rem;
 
@@ -8,15 +8,11 @@
 .card-custom {
   position: relative;
   top: 2rem;
-  left: 2rem;
+  left: 0.5rem;
 }
 
-//center boton 
+//center boton
 .btn-center {
   display: flex;
   justify-content: center;
-}
-
-.btn{
-
 }

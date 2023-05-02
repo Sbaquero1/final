@@ -7,14 +7,14 @@
         <img src="{{producto.imagen}}" class="card-img-top" alt="{{producto.nombre}}" />
         <div class="card-body">
           <h5 class="card-title">{{producto.nombre}}</h5>
-          <p class="card-text">Precio: {{producto.precio | currency:'USD':'.0-0' }}</p>
+          <p class="card-text">Precio: {{producto.precio | currency:'USD': 'symbol': '1.0-0' }}</p>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <button
                 class="btn btn-outline-secondary"
                 type="button"
                 id="button-minus"
-                (click)="decrement(producto)" 
+                (click)="decrement(producto)"
               >
                 -
               </button>
@@ -25,25 +25,27 @@
               placeholder="Cantidad"
               aria-label="Cantidad"
               aria-describedby="button-minus button-plus"
-              value="{{ producto.cantidad }}" 
+              value="{{ producto.cantidad }}"
             />
             <div class="input-group-append">
               <button
                 class="btn btn-outline-secondary"
                 type="button"
                 id="button-plus"
-                (click)="increment(producto)" 
+                (click)="increment(producto)"
               >
                 +
               </button>
             </div>
           </div>
-    
+
+
+
           <div class="btn-center">
             <button type="button" class="btn btn-primary" (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
           </div>
         </div>
       </div>
     </div>
-    
+
 

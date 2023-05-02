@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
-//importacion del modelo 
+//importacion del modelo
 import { Reserva } from '../model/reserva.model';
 
 @Injectable({
@@ -24,10 +24,34 @@ export class ReservaService {
       return this.reservas;
     }
 
-    createResereva(reserva: Reserva){
+    createDatosResereva(reserva: Reserva){
       return new Promise<any>((resolve, reject) => {
         this.angularFirestore
           .collection("reservas")
+          .add(reserva)
+          .then(res => {
+            console.log(res);
+            resolve(res)
+          }, err => reject(err));
+      });
+    }
+
+    createDatosCliente(reserva: Reserva){
+      return new Promise<any>((resolve, reject) => {
+        this.angularFirestore
+          .collection("clientes")
+          .add(reserva)
+          .then(res => {
+            console.log(res);
+            resolve(res)
+          }, err => reject(err));
+      });
+    }
+
+    createDatosPago(reserva: Reserva){
+      return new Promise<any>((resolve, reject) => {
+        this.angularFirestore
+          .collection("pagos")
           .add(reserva)
           .then(res => {
             console.log(res);

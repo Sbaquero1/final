@@ -81,7 +81,7 @@ export class CrearReservaComponent implements OnInit {
     // Formatear la fecha fin usando DatePipe
     this.fechaFin = this.datePipe.transform(fechaFin, 'yyyy-MM-dd');
   }
-  
+
 
   get reserva() { return this.reservasDetalles.controls; } // obtener los controles del formulario de reservas para validar los campos requeridos en el html con *ngIf
   get pago() { return this.pagoDetalles.controls; }
@@ -126,32 +126,32 @@ export class CrearReservaComponent implements OnInit {
     }
   }
 
-  //crear reservas con los 3 pasos 
+  //crear reservas con los 3 pasos
   crearReserva() {
-      
+
       if (this.step == 3) {
         if (this.reservasDetalles.invalid) { return }
         if (this.personasDetalles.invalid) { return }
         if (this.pagoDetalles.invalid) { return }
-  
-        this.reservaService.createResereva(this.reservasDetalles.value).then(res => {
+
+        this.reservaService.createDatosResereva(this.reservasDetalles.value).then(res => {
           console.log(res);
         }).catch(error => {
           console.log(error);
         });
-  
-        this.reservaService.createResereva(this.personasDetalles.value).then(res => {
+
+        this.reservaService.createDatosCliente(this.personasDetalles.value).then(res => {
           console.log(res);
         }).catch(error => {
           console.log(error);
         });
-  
-        this.reservaService.createResereva(this.pagoDetalles.value).then(res => {
+
+        this.reservaService.createDatosPago(this.pagoDetalles.value).then(res => {
           console.log(res);
         }).catch(error => {
           console.log(error);
         });
-  
+
         this.reservasDetalles.reset();
         this.personasDetalles.reset();
         this.pagoDetalles.reset();
