@@ -3,12 +3,14 @@ import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compa
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
+
+
 @Component({
-  selector: 'app-desayuno',
-  templateUrl: './desayuno.component.html',
-  styleUrls: ['./desayuno.component.scss']
+  selector: 'app-almuerzo',
+  templateUrl: './almuerzo.component.html',
+  styleUrls: ['./almuerzo.component.scss']
 })
-export class DesayunoComponent implements OnInit {
+export class AlmuerzoComponent implements OnInit {
 
   cantidad: number = 0;
   productos = [];
@@ -28,7 +30,7 @@ export class DesayunoComponent implements OnInit {
     private firestore: AngularFirestore,
     private snackBar: MatSnackBar,
     ) {
-    this.firestore.collection('productos').valueChanges().subscribe(data => {
+    this.firestore.collection('productosAlmuerzo').valueChanges().subscribe(data => {
       this.productos = data;
     });
   }
@@ -60,7 +62,7 @@ export class DesayunoComponent implements OnInit {
       // });
     }
   }
-
   ngOnInit(): void {
   }
+
 }
