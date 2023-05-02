@@ -1,22 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="container-fluid navbar-custom">
+    <a class="navbar-brand" routerLink="/home">
+      <img src="https://firebasestorage.googleapis.com/v0/b/country-club-uc.appspot.com/o/Design_1-removebg-preview.png?alt=media&token=85cb1a84-6897-4a3a-9652-4acbfc4e1d62" alt="" width="80" height="80">
+    </a>
+    <a class="img-carrito" routerLink="/orden">
+      <img src="https://firebasestorage.googleapis.com/v0/b/country-club-uc.appspot.com/o/img-carrito.png?alt=media&token=e51ff659-5704-4a8b-a9aa-22fd61c5f5ac" alt="" width="50" height="50">
+    </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/home">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/reserva">Reservas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/desayuno">Desayuno</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/almuerzo">Almuerzos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/bar">Bar</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

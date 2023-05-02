@@ -1,0 +1,79 @@
+.row{
+    position: relative;
+    top: 200px;
+    left: 10px; /* desplaza el elemento hacia la derecha */
+    width: 400px; /* establece el ancho del elemento */
+    height: 200px; /* establece la altura del elemento */
+    color: #050505;
+    padding: 10px; /* establece el relleno interno del elemento */
+    font-size: 20px; /* establece el tamaño de fuente del texto */
+    text-align: justify; /* justifica el texto dentro del elemento */
+    font-family: 'Roboto', sans-serif;
+  }
+
+ .img-fluid{
+    position: relative;
+    top: -60px;
+    left: 1000px; /* desplaza el elemento hacia la derecha */
+    width: 450px; /* establece el ancho del elemento */
+    height: 450px; /* establece la altura del elemento */
+    padding: 10px; /* establece el relleno interno del elemento */
+    font-size: 10px; /* establece el tamaño de fuente del texto */
+    text-align: justify; /* justifica el texto dentro del elemento */
+ }
+ .img-fluid-2{
+    position: relative;
+    top: -150px;
+    left: 100px; /* desplaza el elemento hacia la derecha */
+    width: 400px; /* establece el ancho del elemento */
+    height: 400px; /* establece la altura del elemento */
+    padding: 10px; /* establece el relleno interno del elemento */
+    font-size: 10px; /* establece el tamaño de fuente del texto */
+    text-align: justify; /* justifica el texto dentro del elemento */
+ }
+
+ .title{
+    position: relative;
+    top: 120px;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+ }
+
+ .parrafo-2{
+    position: relative;
+    top: 150px;
+    left: 10px; /* desplaza el elemento hacia la derecha */
+    width: 400px; /* establece el ancho del elemento */
+    height: 10px; /* establece la altura del elemento */
+    color: #050505;
+    padding: 10px; /* establece el relleno interno del elemento */
+    font-size: 20px; /* establece el tamaño de fuente del texto */
+    text-align: justify; /* justifica el texto dentro del elemento */
+    font-family: 'Roboto', sans-serif;
+ }
+           
+  .btn {
+    position: relative;
+    top: 5px;
+    left: 140px;
+    background-image: linear-gradient(to right, #16A085 0%, #F4D03F  51%, #16A085  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .btn:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 

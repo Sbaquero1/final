@@ -11,8 +11,8 @@ import { OrdenComponent } from './components/servicios/desayuno/orden/orden.comp
 
 
 const routes: Routes = [
-  { path: '', component: CrearReservaComponent },
-  { path: 'sd', component: ConsultarReservaComponent },
+  { path: '', component: HomeComponent },
+  { path: 'reserva', component: CrearReservaComponent },
   { path: 'desayuno', component: DesayunoComponent },
   { path: 'home', component: HomeComponent },
   { path: 'nav', component: NavComponent },

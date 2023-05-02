@@ -18,6 +18,9 @@ rm {
     position: relative;
   }
   
+  .bajar{
+    margin-top: 130px;
+  }
   
   /*Hide all except first fieldset*/
   #msform fieldset:not(:first-of-type) {
@@ -287,3 +290,5 @@ rm {
     }
   }
   
+
+ 

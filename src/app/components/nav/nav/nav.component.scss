@@ -1,0 +1,27 @@
+.img-carrito{
+position: relative;
+right: -1240px;
+filter: invert(100%) grayscale(100%) brightness(1000%);
+}
+
+.navbar {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 9999; /* asegura que el navbar esté por encima de cualquier otro elemento */
+  }
+.nav-item.a{
+  text-align: center;
+
+}
+
+.navbar-custom {
+  background-color:  #4cd866;
+  color: #ffffff;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-align: center;
+}
