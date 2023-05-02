@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+
 
 @Component({
   selector: 'app-desayuno',
@@ -7,13 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DesayunoComponent implements OnInit {
 
-  desayunos = [
-    { nombre: 'Tostada de aguacate', descripcion: 'Pan tostado con aguacate y huevo', precio: 5.99 },
-    { nombre: 'Bowl de frutas', descripcion: 'Mezcla de frutas frescas con granola y yogur', precio: 6.99 },
-    { nombre: 'Omelette de jamón y queso', descripcion: 'Omelette de tres huevos con jamón y queso', precio: 7.99 }
-  ];
+  cantidad: number = 0;
 
-  constructor() { }
+  increment(producto) {
+    producto.cantidad++; // Incrementamos la cantidad del objeto de producto específico
+  }
+  
+  decrement(producto) {
+    if (producto.cantidad > 0) {
+      producto.cantidad--; // Decrementamos la cantidad del objeto de producto específico solo si es mayor que cero
+    }
+  }
+  productos = [];
+
+  constructor(private firestore: AngularFirestore) {
+    this.firestore.collection('productos').valueChanges().subscribe(data => {
+      this.productos = data;
+    });
+  }
+
+  agregarAlCarrito(producto) {
+    if (producto.cantidad > 0) {
+      this.firestore.collection('carrito').add({
+        nombre: producto.nombre,
+        imagen: producto.imagen,
+        precio: producto.precio,
+        cantidad: producto.cantidad,
+      });
+      console.log('Producto agregado al carrito');
+      producto.cantidad = 0;
+    }else{
+      console.log('ingrese una cantidad mayor a 0');
+    }
+  }
 
   ngOnInit(): void {
   }

@@ -7,13 +7,16 @@ import { ConsultarReservaComponent } from './components/reservas/consultar-reser
 import { DesayunoComponent } from './components/servicios/desayuno/desayuno.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { NavComponent } from './components/nav/nav/nav.component';
+import { OrdenComponent } from './components/servicios/desayuno/orden/orden.component';
+
 
 const routes: Routes = [
   { path: '', component: CrearReservaComponent },
   { path: 'sd', component: ConsultarReservaComponent },
   { path: 'desayuno', component: DesayunoComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'nav', component: NavComponent }
+  { path: 'nav', component: NavComponent },
+  { path: 'orden', component: OrdenComponent },
 
 ];
 
