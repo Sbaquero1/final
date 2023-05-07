@@ -25,15 +25,15 @@ export class OrdenComponent implements OnInit{
   }
 
   solicitarPedido() {
-    if (confirm('¿Está seguro de solicitar el pedido?')) {
-      this.productos.forEach(producto => {
-        this.firestore.collection('productos').doc(producto.nombre).update({
-          stock: producto.stock - producto.cantidad
-        });
-        this.firestore.collection('carrito').doc(producto.id).delete();
-      });
-      alert('Pedido solicitado');
-    }
+    // if (confirm('¿Está seguro de solicitar el pedido?')) {
+    //   this.productos.forEach(producto => {
+    //     this.firestore.collection('productos').doc(producto.nombre).update({
+    //       stock: producto.stock - producto.cantidad
+    //     });
+    //     this.firestore.collection('carrito').doc(producto.id).delete();
+    //   });
+    //   alert('Pedido solicitado');
+    // }
   }
 
   calcularTotal(): void {

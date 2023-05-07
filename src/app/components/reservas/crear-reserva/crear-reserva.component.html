@@ -59,7 +59,7 @@
               <input
                 type="number"
                 [ngModel]="dias"
-                (ngModelChange)="calcularFechaFin()"
+                
                 formControlName="dias"
                 [ngClass]="{
                   'is-invalid': reserva_step && reserva['dias'].errors
@@ -81,7 +81,7 @@
               <input
                 type="date"
                 [(ngModel)]="fechaInicio"
-                (ngModelChange)="calcularFechaFin()"
+                
                 formControlName="fechaInicio"
                 [ngClass]="{
                   'is-invalid': reserva_step && reserva['fechaInicio'].errors
@@ -236,6 +236,9 @@
                 <div *ngIf="persona['nombres'].errors?.['required']">
                   Nombres requeridos
                 </div>
+                <div *ngIf="persona['nombres'].errors?.['pattern']">
+                  El nombre solo puede contener letras y espacios
+                </div>
               </div>
             </div>
             <!-- fin div col -->
@@ -258,6 +261,9 @@
                 <div *ngIf="persona['apellidos'].errors?.['required']">
                   Apellidos requeridos
                 </div>
+                <div *ngIf="persona['apellidos'].errors?.['pattern']">
+                  El apellido solo puede contener letras y espacios
+                </div>
               </div>
             </div>
             <!-- fin div col -->
@@ -279,6 +285,9 @@
               >
                 <div *ngIf="persona['correo'].errors?.['required']">
                   Email requerido
+                </div>
+                <div *ngIf="persona['correo'].errors?.['pattern']">
+                  El correo no es válido
                 </div>
               </div>
             </div>

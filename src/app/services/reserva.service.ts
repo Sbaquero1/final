@@ -35,7 +35,6 @@ export class ReservaService {
           }, err => reject(err));
       });
     }
-
     createDatosCliente(reserva: Reserva){
       return new Promise<any>((resolve, reject) => {
         this.angularFirestore

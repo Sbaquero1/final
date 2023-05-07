@@ -49,9 +49,9 @@ export class CrearReservaComponent implements OnInit {
       tipoIdentificacion: ['', Validators.required],
       identificacion: ['', Validators.required],
       genero: ['', Validators.required],
-      nombres: ['', Validators.required],
-      apellidos: ['', Validators.required],
-      correo: ['', Validators.required],
+      nombres: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      apellidos: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      correo: ['', [Validators.required,Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
       telefono: ['', Validators.required],
     });
 
@@ -71,16 +71,16 @@ export class CrearReservaComponent implements OnInit {
 
   }
 
-  calcularFechaFin() {
-    // Calcular la fecha fin
-    const fechaInicioMs = this.fechaInicio.getTime();
-    const diasMs = this.dias * 24 * 60 * 60 * 1000;
-    const fechaFinMs = fechaInicioMs + diasMs;
-    const fechaFin = new Date(fechaFinMs);
+  // calcularFechaFin() {
+  //   // Calcular la fecha fin
+  //   const fechaInicioMs = this.fechaInicio.getTime();
+  //   const diasMs = this.dias * 24 * 60 * 60 * 1000;
+  //   const fechaFinMs = fechaInicioMs + diasMs;
+  //   const fechaFin = new Date(fechaFinMs);
 
-    // Formatear la fecha fin usando DatePipe
-    this.fechaFin = this.datePipe.transform(fechaFin, 'yyyy-MM-dd');
-  }
+  //   // Formatear la fecha fin usando DatePipe
+  //   this.fechaFin = this.datePipe.transform(fechaFin, 'yyyy-MM-dd');
+  // }
 
 
   get reserva() { return this.reservasDetalles.controls; } // obtener los controles del formulario de reservas para validar los campos requeridos en el html con *ngIf
