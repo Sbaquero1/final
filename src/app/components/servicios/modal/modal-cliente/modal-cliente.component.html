@@ -1,0 +1,64 @@
+<!-- <p>Hola este es un modal</p>
+<form [formGroup]="clienteForm">
+    <mat-label>Nombre</mat-label>
+    <input type="text" formControlName="nombres" id="nombre">
+
+
+
+
+    <button (click)="cancelar()">Cerrar</button>
+</form> -->
+
+<div class="modal-body">
+  <form [formGroup]="clienteForm" (ngSubmit)="guardarPersona()" novalidate>
+    <div class="mb-3">
+      <label for="recipient-name" class="col-form-label"
+        >Numero Idenficación:</label
+      >
+      <input
+        type="number"
+        class="form-control"
+        formControlName="identificacion"
+        id="recipient-name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="recipient-name" class="col-form-label"
+        >Nombres Completos:</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        formControlName="nombres"
+        id="recipient-name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="recipient-name" class="col-form-label"
+        >Numero Habitacón:</label
+      >
+      <input
+        type="number"
+        class="form-control"
+        formControlName="habitacion"
+        id="recipient-name"
+      />
+    </div>
+    <button
+      type="button"
+      class="btn btn-danger"
+      style="margin-right: 10px"
+      (click)="cancelar()"
+    >
+      Cerrar
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      type="submit"
+      [disabled]="!clienteForm.valid"
+    >
+      Confirmar orden
+    </button>
+  </form>
+</div>

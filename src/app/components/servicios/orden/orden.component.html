@@ -1,0 +1,72 @@
+<div class="contenedor">
+  <app-nav></app-nav>
+  <div class="row mt-5">
+    <div class="col mt-5">
+      <div *ngIf="productsOrden.length > 0">
+        <table class="table mt-5 text-center">
+          <thead>
+            <tr>
+              <th scope="col">Imagen</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Total</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productsOrden">
+              <td>
+                <img
+                  [src]="producto.imagen"
+                  alt="{{ producto.imagen }}"
+                  style="width: 200px; height: 100px"
+                />
+              </td>
+              <td>{{ producto.nombre }}</td>
+              <td>
+                {{ producto.precio | currency : "USD" : "symbol" : "1.0-0" }}
+              </td>
+              <td>{{ producto.cantidad }}</td>
+              <td>
+                {{
+                  producto.precio * producto.cantidad
+                    | currency : "USD" : "symbol" : "1.0-0"
+                }}
+              </td>
+              <button type="button" (click)="eliminarProducto(producto)">
+                <img
+                  class="img-tash"
+                  type="button"
+                  src="https://firebasestorage.googleapis.com/v0/b/country-club-uc.appspot.com/o/papelera-de-reciclaje.png?alt=media&token=f9c4f94a-18fd-4760-b11d-86bf94d958e6"
+                  alt=""
+                  width="20"
+                  height="20"
+                />
+              </button>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <td>{{ total | currency:'USD': 'symbol': '1.0-0' }}</td>
+            </tr>
+          </tbody>
+          <div class="btn-center">
+            <button
+              type="button"
+              class="btn btn-primary mt-2"
+              (click)="solicitarOrden()"
+            >
+              Solicitar Orden
+            </button>
+          </div>
+        </table>
+      </div>
+      <div class="sinProducto" *ngIf="productsOrden.length === 0">
+        <p>No hay productos en el carrito.</p>
+      </div>
+    </div>
+  </div>
+</div>

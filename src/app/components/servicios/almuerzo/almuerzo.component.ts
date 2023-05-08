@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -14,6 +15,7 @@ export class AlmuerzoComponent implements OnInit {
 
   cantidad: number = 0;
   productos = [];
+  totalCarrito: number = 0;
 
   increment(producto) {
     producto.cantidad++; // Incrementamos la cantidad del objeto de producto específico
@@ -62,7 +64,20 @@ export class AlmuerzoComponent implements OnInit {
       // });
     }
   }
+
+  calcularTotalCarrito(): void {
+    this.totalCarrito = 0;
+    this.productos.forEach(producto => {
+      this.totalCarrito += producto.precio * producto.cantidad;
+      console.log(this.totalCarrito);
+    });
+  }
+
+
+
   ngOnInit(): void {
+    this.calcularTotalCarrito();
+    console.log(this.totalCarrito);
   }
 
 }

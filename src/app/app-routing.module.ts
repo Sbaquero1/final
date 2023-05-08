@@ -7,7 +7,7 @@ import { ConsultarReservaComponent } from './components/reservas/consultar-reser
 import { DesayunoComponent } from './components/servicios/desayuno/desayuno.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { NavComponent } from './components/nav/nav/nav.component';
-import { OrdenComponent } from './components/servicios/desayuno/orden/orden.component';
+import { OrdenComponent } from './components/servicios/orden/orden.component';
 import { AlmuerzoComponent } from './components/servicios/almuerzo/almuerzo.component';
 import { BarComponent } from './components/servicios/bar/bar.component';
 
