@@ -56,7 +56,7 @@ export class OrdenComponent {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('El modal se ha cerrado');
+      // console.log('El modal se ha cerrado');
     });
   }
 }

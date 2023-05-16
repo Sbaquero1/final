@@ -26,8 +26,6 @@ export class ModalClienteComponent implements OnInit {
     private afs: AngularFirestore,
     private fb: FormBuilder,
     private productsOrdenService: ProductsOrdenService,
-    private matFormFieldModule: MatFormFieldModule,
-    private matAutocompleteModule: MatAutocompleteModule,
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +45,7 @@ export class ModalClienteComponent implements OnInit {
       this.productsOrdenService.limpiarCarrito(); 
       this.productsOrdenService.guardarOrden(cliente, productos);
       this.dialogRef.close();
+      console.log('Su orden ha sido registrada');
     }, (error) => {
       console.log(error);
     });
