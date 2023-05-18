@@ -10,6 +10,10 @@ import { NavComponent } from './components/nav/nav/nav.component';
 import { OrdenComponent } from './components/servicios/orden/orden.component';
 import { AlmuerzoComponent } from './components/servicios/almuerzo/almuerzo.component';
 import { BarComponent } from './components/servicios/bar/bar.component';
+import { PasadiasComponent } from './components/servicios/pasadias/pasadias.component';
+import { AlquilerComponent } from './components/servicios/alquiler/alquiler.component';
+import { ConsultarPasadiasComponent } from './components/servicios/consultar-pasadias/consultar-pasadias.component';
+
 
 
 const routes: Routes = [
@@ -21,7 +25,9 @@ const routes: Routes = [
   { path: 'orden', component: OrdenComponent },
   { path: 'almuerzo', component: AlmuerzoComponent },
   { path: 'bar', component: BarComponent },
-
+  { path: 'pasadia', component:PasadiasComponent},
+  { path: 'alquiler', component: AlquilerComponent },
+  { path: 'consultar-pasadia',  component: ConsultarPasadiasComponent},
 ];
 
 @NgModule({

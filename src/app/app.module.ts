@@ -30,6 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlmuerzoComponent } from './components/servicios/almuerzo/almuerzo.component';
 import { BarComponent } from './components/servicios/bar/bar.component';
 import { ModalClienteComponent } from './components/servicios/modal/modal-cliente/modal-cliente.component';
+import { PasadiasComponent } from './components/servicios/pasadias/pasadias.component';
+import { AlquilerComponent } from './components/servicios/alquiler/alquiler.component';
+import { ConsultarPasadiasComponent } from './components/servicios/consultar-pasadias/consultar-pasadias.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { ModalClienteComponent } from './components/servicios/modal/modal-client
     AlmuerzoComponent,
     BarComponent,
     ModalClienteComponent,
+    PasadiasComponent,
+    AlquilerComponent,
+    ConsultarPasadiasComponent,
   ],
   imports: [
     BrowserModule,

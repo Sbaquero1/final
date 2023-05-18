@@ -1,0 +1,123 @@
+<div class="nav">
+    <app-nav></app-nav>
+</div>
+<div class="contenedor">
+    <form class="row g-3" [formGroup]="alquiler" (ngSubmit)="crearAlquiler()">
+        <div class="col-md-4">
+            <label for="inputident" class="form-label">Identificación</label>
+            <input type="number" class="form-control tipoNumero" id="inputident" formControlName="identificacion" min="0" >
+            <div *ngIf="alquiler.get('identificacion').invalid && (alquiler.get('identificacion').dirty || 
+            alquiler.get('identificacion').touched)">
+                <div *ngIf="alquiler.get('identificacion').errors?.['required']" class="validacion">
+                    * El campo número de identificación obligatorio
+                </div>
+                <div *ngIf="alquiler.get('identificacion').errors?.['pattern']" class="validacion">
+                    * Ingrese solo numeros
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-4">
+            <label for="inputnom" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="inputnom" formControlName="nombres" >
+            <div *ngIf="alquiler.get('nombres').invalid && (alquiler.get('nombres').dirty || 
+            alquiler.get('nombres').touched)">
+                <div *ngIf="alquiler.get('nombres').errors?.['required']" class="validacion">
+                    * El campo nombres es obligatorio
+                </div>
+                <div *ngIf="alquiler.get('nombres').errors?.['pattern']" class="validacion">
+                    * Ingrese solo letras
+                </div>
+            </div>
+        </div>        
+        <div class="col-md-4">
+            <label for="inputApel" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="inputApel" formControlName="apellidos">
+            <div *ngIf="alquiler.get('apellidos').invalid && (alquiler.get('nombres').dirty || 
+            alquiler.get('apellidos').touched)">
+                <div *ngIf="alquiler.get('apellidos').errors?.['required']" class="validacion">
+                    * El campo apellidos es obligatorio
+                </div>
+                <div *ngIf="alquiler.get('apellidos').errors?.['pattern']" class="validacion">
+                    * Ingrese solo letras
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">Eventos</label>
+            <select id="inputState" class="form-select" formControlName="tipoEvento" (ngModelChange)="calcularValorAlquiler()">
+                <option disabled selected>Seleccione un Evento</option>
+                <option>Familiar</option>
+                <option>Empresarial</option>
+            </select>
+            <div *ngIf="alquiler.get('tipoEvento').invalid && (alquiler.get('tipoEvento').dirty || 
+            alquiler.get('tipoEvento').touched)">
+                <div *ngIf="alquiler.get('tipoEvento').errors?.['required']" class="validacion">
+                    * El campo tipo de evento es obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">Espacio alquilado</label>
+            <select id="inputState" class="form-select" formControlName="espacioAlquilado" (ngModelChange)="calcularValorAlquiler()">
+                <option disabled selected>Seleccione un Espacio</option>
+                <option>Totalidad</option>
+                <option>Parcial</option>
+            </select>
+            <div *ngIf="alquiler.get('tipoEvento').invalid && (alquiler.get('tipoEvento').dirty || 
+            alquiler.get('tipoEvento').touched)">
+                <div *ngIf="alquiler.get('tipoEvento').errors?.['required']" class="validacion">
+                    * El campo tipo de espacio es obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputDate" class="form-label">Fecha inicio</label>
+            <input type="date" class="form-control" id="inputDate" formControlName="fechaInicio" name="fechaInicio">
+            <div *ngIf="alquiler.get('fechaInicio').invalid && (alquiler.get('fechaInicio').dirty || 
+            alquiler.get('fechaInicio').touched)">
+                <div *ngIf="alquiler.get('fechaInicio').errors?.['required']" class="validacion">
+                    * El campo fecha de inicio es obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputDias" class="form-label">Dias</label>
+            <input type="number" class="form-control tipoNumero" id="inputDias" formControlName="dias" (ngModelChange)="calcularValorAlquiler()"  name="dias" min="1"
+            >
+            <div *ngIf="alquiler.get('dias').invalid && (alquiler.get('dias').dirty || 
+            alquiler.get('dias').touched)">
+                <div *ngIf="alquiler.get('dias').errors?.['required']" class="validacion">
+                    * El campo número de dias es obligatorio
+                </div>
+                <div *ngIf="alquiler.get('dias').errors?.['pattern']" class="validacion">
+                    * Ingrese solo numeros
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputDate" class="form-label">Fecha fin</label>
+            <input type="date" class="form-control" id="inputDate" formControlName="fechaFin"
+            readonly>
+        </div>
+        <div class="col-md-4">
+            <label for="inputPerson" class="form-label">Número de personas</label>
+            <input type="number" class="form-control tipoNumero" id="inputPerson" formControlName="numeroPersonas" min="1"> 
+            <div *ngIf="alquiler.get('numeroPersonas').invalid && (alquiler.get('numeroPersonas').dirty || 
+            alquiler.get('numeroPersonas').touched)">
+                <div *ngIf="alquiler.get('numeroPersonas').errors?.['required']" class="validacion">
+                    * El campo número de personas es obligatorio
+                </div>
+                <div *ngIf="alquiler.get('numeroPersonas').errors?.['pattern']" class="validacion">
+                    * Ingrese solo numeros
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputPrice" class="form-label">Valor a cancelar</label>
+            <input type="text" class="form-control tipoNumero" id="inputPrice" formControlName="valor" [(ngModel)]="valorServicio" currencyMask readonly>
+        </div>
+        <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-primary" [disabled]="!alquiler.valid">Solicitar Servicio</button>
+        </div>
+    </form>
+</div>

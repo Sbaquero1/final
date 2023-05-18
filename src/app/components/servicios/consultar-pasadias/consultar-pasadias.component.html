@@ -1,0 +1,32 @@
+<div class="contenedor">
+    <h2 class="title">Listado de Pasadias</h2>
+    <div class="nav">
+        <app-nav></app-nav>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="colum">
+                <th scope="col">Identificacion</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Servicio</th>
+                <th scope="col">Dias</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Número Personas</th>
+                <th scope="col">Valor a Cancelar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of dataPasadias" class="item">
+                <td>{{item.identificacion}}</td>
+                <td>{{item.nombres}}</td>
+                <td>{{item.apellidos}}</td>
+                <td>{{item.servicios}}</td>
+                <td>{{item.dias}}</td>
+                <td>{{item.fechaInicio}}</td>
+                <td>{{item.numeroPersonas}}</td>
+                <td>{{item.precio | currency: 'USD' : 'symbol': '1.0-0'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

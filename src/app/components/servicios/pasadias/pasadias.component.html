@@ -1,0 +1,103 @@
+<div class="nav">
+    <app-nav></app-nav>
+</div>
+<div class="contenedor">
+    <form class="row g-3" [formGroup]="pasadia" (ngSubmit)="crearPasadia()">
+        <div class="col-md-4">
+            <label for="inputident" class="form-label">Identificación</label>
+            <input type="number" class="form-control tipoNumero" id="inputident" formControlName="identificacion" min="0">
+            <div *ngIf="pasadia.get('identificacion').invalid && (pasadia.get('identificacion').dirty || 
+            pasadia.get('identificacion').touched)">
+                <div *ngIf="pasadia.get('identificacion').errors?.['required']" class="validacion">
+                    * El campo número de identificación es obligatorio
+                </div>
+                <div *ngIf="pasadia.get('identificacion').errors?.['pattern']" class="validacion">
+                    * Ingrese solo numeros
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-4">
+            <label for="inputnom" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="inputnom" formControlName="nombres">
+            <div *ngIf="pasadia.get('nombres').invalid && (pasadia.get('identificacion').dirty || 
+            pasadia.get('nombres').touched)">
+                <div *ngIf="pasadia.get('nombres').errors?.['required']" class="validacion">
+                    * El campo nombres es obligatorio
+                </div>
+                <div *ngIf="pasadia.get('nombres').errors?.['pattern']" class="validacion">
+                    * Ingrese solo letras
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputApel" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="inputApel" formControlName="apellidos">
+            <div *ngIf="pasadia.get('apellidos').invalid && (pasadia.get('identificacion').dirty || 
+            pasadia.get('apellidos').touched)">
+                <div *ngIf="pasadia.get('apellidos').errors?.['required']" class="validacion">
+                    * El campo apellidos es obligatorio
+                </div>
+                <div *ngIf="pasadia.get('apellidos').errors?.['pattern']" class="validacion">
+                    * Ingrese solo letras
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">Servicio</label>
+            <select id="inputState" class="form-select" formControlName="servicios" (ngModelChange)="calcularPrecioServicio()">
+                <option disabled selected>Seleccione un servicio</option>
+                <option>Piscina</option>
+                <option>Almuerzo & Piscina</option>
+            </select>
+            <div *ngIf="pasadia.get('servicios').invalid && (pasadia.get('servicios').dirty || 
+            pasadia.get('servicios').touched)">
+                <div *ngIf="pasadia.get('servicios').errors?.['required']" class="validacion">
+                    * El campo tipo de servicio es obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputDias" class="form-label">Dias</label>
+            <input type="number" class="form-control tipoNumero" id="inputDias" formControlName="dias" min="1"   (ngModelChange)="calcularPrecioServicio()">
+            <div *ngIf="pasadia.get('dias').invalid && (pasadia.get('dias').dirty || 
+            pasadia.get('dias').touched)">
+                <div *ngIf="pasadia.get('dias').errors?.['required']" class="validacion">
+                    * El campo número de dias es obligatorio
+                </div>
+                <div *ngIf="pasadia.get('dias').errors?.['pattern']" class="validacion">
+                    * Ingrese solo numeros
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputDate" class="form-label">Fecha inicio</label>
+            <input type="date" class="form-control" id="inputDate" formControlName="fechaInicio">
+            <div *ngIf="pasadia.get('fechaInicio').invalid && (pasadia.get('fechaInicio').dirty || 
+            pasadia.get('fechaInicio').touched)">
+                <div *ngIf="pasadia.get('fechaInicio').errors?.['required']" class="validacion">
+                    * El campo fecha de inicio es obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputPerson" class="form-label">Número de personas</label>
+            <input type="number" class="form-control tipoNumero" id="inputPerson" formControlName="numeroPersonas" min="1" (ngModelChange)="calcularPrecioServicio()">
+            <div *ngIf="pasadia.get('numeroPersonas').invalid && (pasadia.get('numeroPersonas').dirty || 
+            pasadia.get('numeroPersonas').touched)">
+                <div *ngIf="pasadia.get('numeroPersonas').errors?.['required']" class="validacion">
+                    * El campo número de personas es obligatorio
+                </div>
+                <div *ngIf="pasadia.get('numeroPersonas').errors?.['pattern']" class="validacion">
+                    * Ingrese solo numeros
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="inputPrice" class="form-label">Valor a cancelar</label>
+            <input type="number" class="form-control tipoNumero" id="inputPrice" formControlName="precio" [(ngModel)]="valorServicio" readonly>
+        </div>
+        <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-primary" [disabled]="!pasadia.valid">Solicitar Servicio</button>
+        </div>
+    </form>
+</div>
